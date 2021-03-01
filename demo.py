@@ -257,7 +257,7 @@ def modified_mat(ske,name) :
 def main(img_path, json_path=None):
     sess = tf.Session()
     model = RunModel(config, sess=sess)
-    images = glob.glob('/content/gdrive/My Drive/projects/hmr/supplementary/*.png')
+    images = glob.glob('./data/*.jpg')
     print ("Prediction started")
     print (len(images))
     

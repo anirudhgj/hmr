@@ -29,7 +29,7 @@ class SMPL(object):
         """
         # -- Load SMPL params --
         with open(pkl_path, 'rb') as f:
-            dd = pickle.load(f, encoding="latin-1") 
+            dd = pickle.load(f) 
         # Mean template vertices
         self.v_template = tf.Variable(
             undo_chumpy(dd['v_template']),
@@ -153,7 +153,7 @@ class SMPL(object):
             joint_y = tf.matmul(verts[:, :, 1], self.joint_regressor)
             joint_z = tf.matmul(verts[:, :, 2], self.joint_regressor)
             joints = tf.stack([joint_x, joint_y, joint_z], axis=2)
-
+            joints = self.J_transformed # added by anirudh
             if get_skin:
                 return verts, joints, Rs
             else:
